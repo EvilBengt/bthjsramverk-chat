@@ -6,12 +6,19 @@ const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 
 io.on("connection", function (socket) {
-    console.info("User connected");
+    socket.on("messageFromClient", function (message) {
+        console.log("messageFromClient:");
+        console.log("> " + message);
 
-    socket.on("clientSentMessage", function (message) {
-        io.emit("newMessage", message);
+        io.emit("messageFromServer", message);
     });
+    socket.on("clientConnected", function (message) {
+        console.log("clientConnected:");
+        console.log("> " + message);
+
+        io.emit("newClient", message);
+    })
 });
 
-server.listen(3000);
-console.log("Listening on 3000");
+server.listen(3001);
+console.log("Listening on 3001");

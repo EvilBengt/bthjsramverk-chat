@@ -13,6 +13,8 @@ if (process.env.NODE_ENV !== "test") {
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 
+io.origins(["https://chat.jsramverk.evilbengt.me:443"]);
+
 io.on("connection", function (socket) {
     socket.on("messageFromClient", function (message) {
         console.log("messageFromClient:");
@@ -28,5 +30,5 @@ io.on("connection", function (socket) {
     })
 });
 
-server.listen(3001);
-console.log("Listening on 3001");
+server.listen(8300);
+console.log("Listening on 8300");

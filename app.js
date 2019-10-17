@@ -1,10 +1,7 @@
 const express = require("express");
-const cors = require("cors");
 const morgan = require("morgan");
 
 const app = express();
-
-app.use(cors());
 
 if (process.env.NODE_ENV !== "test") {
     app.use(morgan("combined"));
@@ -13,7 +10,7 @@ if (process.env.NODE_ENV !== "test") {
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 
-io.origins(["https://chat.jsramverk.evilbengt.me:443"]);
+io.origins(["https://jsramverk.evilbengt.me:443"]);
 
 io.on("connection", function (socket) {
     socket.on("messageFromClient", function (message) {

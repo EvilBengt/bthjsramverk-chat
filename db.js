@@ -1,6 +1,6 @@
 const mongo = require("mongodb").MongoClient;
 
-const dsn = process.env.CHAT_DSN || "mongodb://localhost:27017/chat"
+const dsn = "mongodb://localhost:27017/chat"
 
 async function usingCollection(dsn, colName, f) {
     const client  = await mongo.connect(dsn);
